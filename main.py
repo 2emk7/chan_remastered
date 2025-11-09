@@ -1,13 +1,16 @@
 print("Chan Remastered")
+
+"""
 import requests
 
 data = requests.get(
     url = "https://api.hypixel.net/player",
     params = {
-        "key": "KEY",
+        "key": "6f4015b4-270b-4715-aa27-b497531a4c46",
         "name": "overambitious"
     }
 ).json()
+"""
 
 # 1. Type .\.venv\Scripts\Activate.ps1      to activate venv 
 # 2. pyinstaller --onefile --name ChanRemastered main.py     to update the exe
