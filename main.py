@@ -17,8 +17,9 @@ API_KEY = API_FILE.read().strip()
 online = "ONLINE:"
 
 def main():
-    
 
+    players = {}
+    counter = 0
     names = splitnames(find_latest_line())
 
     NAME_W = 20
@@ -32,18 +33,28 @@ def main():
     print('-' * len(header))
     
     for name in names:
+        counter += 1
         url = f"https://api.hypixel.net/player?key={API_KEY}&name={name}"
         data = getInfo(url)
-
         finals = str(data["player"]["stats"]["Bedwars"]["final_kills_bedwars"])
         wins = str(data["player"]["stats"]["Bedwars"]["wins_bedwars"])
         kills = str(data["player"]["stats"]["Bedwars"]["kills_bedwars"])
         bedsbroken = str(data["player"]["stats"]["Bedwars"]["beds_broken_bedwars"])
         
-        print(f"{name:<{NAME_W}}{finals:>{FIN_W}}{wins:>{WINS_W}}{kills:>{KILLS_W}}{bedsbroken:>{BEDS_W}}")
+        player = "player" + str(counter)
+        players[player] = {
+            "name": name,
+            "finals": finals,
+            "wins": wins,
+            "kills": kills,
+            "bedsbroken": bedsbroken
+        }
+        pprint(players)
+
+        print(players[player]['kills'])
 
 
-    
+
     input("Press Enter to exit...")
     
 
@@ -68,4 +79,10 @@ def splitnames(line):
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        print(f"\nError occurred: {type(e).__name__}: {e}")
+        import traceback
+        traceback.print_exc()
+        input("Press Enter to exit...")
