@@ -128,7 +128,7 @@
  [],
  False,
  False,
- 1762753789,
+ 1762790350,
  [('run.exe',
    'C:\\Users\\ethan\\OneDrive\\Desktop\\chan_remastered\\.venv\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\run.exe',
    'EXECUTABLE')],

@@ -1,5 +1,3 @@
-print("Chan Remastered")
-
 import requests
 import json
 from pprint import pprint
@@ -22,17 +20,27 @@ def main():
     
 
     names = splitnames(find_latest_line())
-    print(names)
 
+    NAME_W = 20
+    FIN_W = 12
+    WINS_W = 8
+    KILLS_W = 8
+    BEDS_W = 12
+
+    header = f"{'name':<{NAME_W}}{'finals':>{FIN_W}}{'wins':>{WINS_W}}{'kills':>{KILLS_W}}{'beds':>{BEDS_W}}"
+    print(header)
+    print('-' * len(header))
+    
     for name in names:
-        print(name)
         url = f"https://api.hypixel.net/player?key={API_KEY}&name={name}"
         data = getInfo(url)
 
-        print("Final Kills: " + str(data["player"]["stats"]["Bedwars"]["final_kills_bedwars"]))
-        print("Wins: " + str(data["player"]["stats"]["Bedwars"]["wins_bedwars"]))
-        print("Kills: " + str(data["player"]["stats"]["Bedwars"]["kills_bedwars"]))
-        print("Beds Broken: " + str(data["player"]["stats"]["Bedwars"]["beds_broken_bedwars"]))
+        finals = str(data["player"]["stats"]["Bedwars"]["final_kills_bedwars"])
+        wins = str(data["player"]["stats"]["Bedwars"]["wins_bedwars"])
+        kills = str(data["player"]["stats"]["Bedwars"]["kills_bedwars"])
+        bedsbroken = str(data["player"]["stats"]["Bedwars"]["beds_broken_bedwars"])
+        
+        print(f"{name:<{NAME_W}}{finals:>{FIN_W}}{wins:>{WINS_W}}{kills:>{KILLS_W}}{bedsbroken:>{BEDS_W}}")
 
 
     
